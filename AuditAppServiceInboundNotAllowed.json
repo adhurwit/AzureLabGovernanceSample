@@ -1,0 +1,43 @@
+{
+    "mode": "All",
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Web/sites/config"
+          },
+          {
+            "count": {
+              "field": "Microsoft.Web/sites/config/web.ipSecurityRestrictions[*]",
+              "where": {
+                "allOf": [
+                  {
+                    "field": "Microsoft.Web/sites/config/web.ipSecurityRestrictions[*].ipAddress",
+                    "notEquals": "[parameters('ipAddress')]"
+                  },
+                  {
+                    "field": "Microsoft.Web/sites/config/web.ipSecurityRestrictions[*].action",
+                    "equals": "Allow"
+                  }
+                ]
+              }
+            },
+            "greater": 0
+          }
+        ]
+      },
+      "then": {
+        "effect": "audit"
+      }
+    },
+    "parameters": {
+      "ipAddress": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Allowed ip block",
+          "description": "The IP block allowed for App Service."
+        }
+      }
+    }
+  }
