@@ -2,7 +2,7 @@
 
 **The code contained in this repository is a sample. It is for demonstration purposes only.** 
 
-This repository contains basic code and guidance for lightweight governance in Azure associated with an Innovation Lab. 
+This repository contains basic code and guidance for lightweight governance in Azure associated with an Innovation Lab.
 
 ### Management Group
 
@@ -13,7 +13,7 @@ A Management Group should be created to help enforce governance across the Subsc
 
 1. IP restriction for App Service
 
-    These 3 JSON files include Azure Policies that work in conjunction with each other to lock down the networking for App Serivce. NOTE: that this applies to all App Services kinds: WebApp, FunctionApp, APIApp. 
+    These 3 JSON files include Azure Policies that work in conjunction with each other to lock down the networking for App Serivce. NOTE: that this applies to all App Services kinds: WebApp, FunctionApp, APIApp. And it only applies to the front-end of the service. It does not restrict the back-end / source control side of the service. These samples can easily be expanded to include the SCM side. 
 
     * RestrictAppServiceInboundIPAddress.json
     This custom Policy will Append an Allow rule for an inbound IP block for all new App Services., when this is in place App Service will automatically include a Deny all at the lowest priority. 
